@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriele Drumond Make-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#C9A24B; --gold-dark:#A8832F; --gold-soft:#E9D7A8;
+    --ivory:#FBF7F0; --cream:#F4ECDF; --nude:#E8D3C3; --rose:#D9A9A0;
+    --ink:#2A2421; --muted:#7A6E66; --white:#fff;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --script:"Great Vibes", cursive;
+    --sans:"Jost", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--ivory);line-height:1.6;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-dark);font-weight:500}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1}
+  h2{font-size:clamp(2rem,4vw,3rem)}
+  .script{font-family:var(--script);color:var(--gold);font-weight:400}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.8rem;border:1px solid var(--gold);background:var(--gold);color:var(--white);font-family:var(--sans);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+  .btn:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+  .btn.ghost{background:transparent;color:var(--gold-dark)}
+  .btn.ghost:hover{background:var(--gold);color:var(--white)}
+
+  /* Top bar + header */
+  .topbar{background:var(--ink);color:var(--gold-soft);text-align:center;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 16px}
+  header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,75,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:.8rem}
+  .brand img{width:56px;height:56px;object-fit:contain}
+  .brand span{font-family:var(--serif);font-size:1.25rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark)}
+  .menu{display:flex;gap:2.2rem;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+  .menu a{position:relative;padding:.3rem 0}
+  .menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+  .menu a:hover::after{width:100%}
+  .icons{display:flex;gap:1.1rem;align-items:center}
+  .icon-btn{background:none;border:0;cursor:pointer;color:var(--ink);position:relative;display:grid;place-items:center;width:40px;height:40px}
+  .icon-btn svg{width:22px;height:22px}
+  .badge{position:absolute;top:2px;right:0;background:var(--gold);color:#fff;font-size:.65rem;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;font-weight:500;transform:scale(1);transition:transform .2s}
+  .badge.bump{transform:scale(1.35)}
+  .burger{display:none}
+
+  /* Hero */
+  .hero{position:relative;padding:72px 0 96px;background:
+      radial-gradient(ellipse 60% 70% at 78% 45%, rgba(233,215,168,.55), transparent 70%),
+      linear-gradient(180deg,var(--ivory),var(--cream))}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.6vw,4.6rem);margin:.9rem 0 .4rem}
+  .hero h1 .script{display:block;font-size:1.25em;line-height:1;margin-top:.15em}
+  .hero p.lead{font-size:1.08rem;color:var(--muted);max-width:30rem;margin:1.2rem 0 2rem}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:2.4rem;margin-top:2.8rem;padding-top:1.6rem;border-top:1px solid rgba(201,162,75,.3)}
+  .hero-stats strong{display:block;font-family:var(--serif);font-size:2rem;color:var(--gold-dark);font-weight:500}
+  .hero-stats span{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .hero-art{position:relative;display:grid;place-items:center}
+  .hero-art .halo{position:absolute;width:88%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.6) 45%,transparent 70%)}
+  .hero-art img{position:relative;width:min(470px,100%);animation:float 7s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-10px)}}
+
+  /* Marquee */
+  .marquee{background:var(--gold);color:#fff;overflow:hidden;white-space:nowrap;padding:.9rem 0}
+  .marquee div{display:inline-block;animation:scroll 30s linear infinite;font-family:var(--serif);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase}
+  .marquee span{margin:0 1.6rem;opacity:.9}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  section{padding:96px 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 56px}
+  .sec-head h2{margin:.6rem 0 .8rem}
+  .sec-head p{color:var(--muted)}
+
+  /* Categories */
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .cat{position:relative;aspect-ratio:3/4;border-radius:200px 200px 6px 6px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding:28px;cursor:pointer;transition:transform .35s}
+  .cat:hover{transform:translateY(-6px)}
+  .cat svg{position:absolute;inset:18% 22% auto;width:56%;height:auto;opacity:.95;transition:transform .5s}
+  .cat:hover svg{transform:scale(1.06) rotate(-3deg)}
+  .cat h3{position:relative;font-size:1.5rem;color:var(--ink);background:rgba(255,255,255,.75);padding:.4rem 1.4rem;border-radius:40px}
+  .c1{background:linear-gradient(160deg,#F3DCD3,#E2B9AE)}
+  .c2{background:linear-gradient(160deg,#F5E9D3,#E3CBA0)}
+  .c3{background:linear-gradient(160deg,#EFE3DA,#D9C1B0)}
+  .c4{background:linear-gradient(160deg,#F2E6E0,#DEC6BC)}
+
+  /* Products */
+  .products-bg{background:var(--white)}
+  .tabs{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-bottom:40px}
+  .tab{border:1px solid rgba(201,162,75,.45);background:transparent;padding:.55rem 1.3rem;border-radius:40px;font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:all .2s}
+  .tab.active,.tab:hover{background:var(--ink);color:var(--gold-soft);border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .card{display:flex;flex-direction:column}
+  .card .media{position:relative;aspect-ratio:1;border-radius:6px;display:grid;place-items:center;overflow:hidden;background:var(--cream)}
+  .card .media svg{width:58%;height:58%;transition:transform .5s}
+  .card:hover .media svg{transform:scale(1.07)}
+  .card .tag{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--gold-soft);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border-radius:3px}
+  .card .fav{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--gold-dark)}
+  .card .fav svg{width:18px;height:18px}
+  .card .fav.on svg{fill:var(--gold)}
+  .card .add{position:absolute;left:12px;right:12px;bottom:12px;transform:translateY(130%);transition:transform .3s;justify-content:center}
+  .card:hover .add{transform:none}
+  .card .info{padding:16px 2px 0}
+  .card .brand-n{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .card h3{font-size:1.3rem;margin:.25rem 0 .35rem}
+  .swatches{display:flex;gap:6px;margin:.3rem 0 .5rem}
+  .swatches i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+  .price{display:flex;align-items:baseline;gap:.6rem}
+  .price b{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--gold-dark)}
+  .price s{color:var(--muted);font-size:.85rem}
+  .stars{color:var(--gold);font-size:.8rem;letter-spacing:.1em}
+  .card.hide{display:none}
+
+  /* Services */
+  .services{background:linear-gradient(180deg,var(--cream),var(--ivory))}
+  .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .serv{background:#fff;border:1px solid rgba(201,162,75,.25);padding:40px 32px;text-align:center;position:relative;transition:box-shadow .3s,transform .3s}
+  .serv:hover{box-shadow:0 24px 50px -28px rgba(120,90,30,.45);transform:translateY(-4px)}
+  .serv .num{font-family:var(--script);font-size:3.2rem;color:var(--gold);line-height:1}
+  .serv h3{font-size:1.7rem;margin:.6rem 0}
+  .serv p{color:var(--muted);font-size:.95rem;margin-bottom:1.2rem}
+  .serv .from{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .serv .from b{display:block;font-family:var(--serif);font-size:1.7rem;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;margin:.2rem 0 1.2rem}
+  .serv.featured{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .serv.featured p,.serv.featured .from{color:#C8BCB2}
+  .serv.featured .from b{color:var(--gold-soft)}
+  .serv.featured::before{content:"Mais procurado";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.35rem .9rem}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+  .portrait{position:relative;aspect-ratio:4/5;border-radius:240px 240px 8px 8px;background:linear-gradient(170deg,#EAD6C6,#CFA898);overflow:hidden;display:grid;place-items:center}
+  .portrait::after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.6);border-radius:230px 230px 4px 4px}
+  .portrait .ph{text-align:center;color:rgba(255,255,255,.95);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+  .portrait .ph .script{display:block;color:#fff;font-size:3.4rem;text-transform:none;letter-spacing:0;margin-bottom:.4rem}
+  .about h2 .script{font-size:1.3em}
+  .about p{color:var(--muted);margin:1rem 0}
+  .checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.5rem;margin:1.6rem 0 2rem}
+  .checks li{display:flex;gap:.6rem;align-items:center;font-size:.95rem}
+  .checks li::before{content:"";width:8px;height:8px;transform:rotate(45deg);background:var(--gold);flex:none}
+
+  /* Testimonials */
+  .testi{background:var(--ink);color:var(--ivory)}
+  .testi .sec-head p{color:#B8ACA2}
+  .testi .eyebrow{color:var(--gold-soft)}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .t{border:1px solid rgba(233,215,168,.22);padding:34px 30px}
+  .t .q{font-family:var(--serif);font-size:3.6rem;line-height:.6;color:var(--gold)}
+  .t p{font-family:var(--serif);font-size:1.22rem;font-style:italic;margin:.6rem 0 1.4rem;color:#EFE6DA}
+  .t .who{display:flex;align-items:center;gap:.8rem;font-size:.85rem}
+  .t .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--gold));display:grid;place-items:center;color:var(--ink);font-family:var(--serif);font-size:1.1rem;font-weight:600}
+  .t .who small{display:block;color:#A89C92;font-size:.75rem}
+
+  /* Instagram */
+  .insta{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .insta div{aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer}
+  .insta div::after{content:"♡";position:absolute;inset:0;display:grid;place-items:center;font-size:1.8rem;color:#fff;background:rgba(42,36,33,.35);opacity:0;transition:opacity .3s}
+  .insta div:hover::after{opacity:1}
+
+  /* Newsletter */
+  .news{background:radial-gradient(ellipse at center,var(--gold-soft),var(--cream) 70%);text-align:center}
+  .news form{display:flex;max-width:520px;margin:2rem auto 0;border:1px solid var(--gold);background:#fff}
+  .news input{flex:1;border:0;padding:1rem 1.2rem;font-family:var(--sans);font-size:1rem;background:transparent;outline:none;min-width:0}
+
+  footer{background:#1F1A18;color:#B8ACA2;padding:72px 0 28px;font-size:.92rem}
+  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+  footer h4{font-family:var(--serif);color:var(--gold-soft);font-size:1.25rem;font-weight:500;margin-bottom:1rem}
+  footer li{list-style:none;margin:.45rem 0}
+  footer a:hover{color:var(--gold-soft)}
+  .f-logo{width:110px;margin-bottom:1rem}
+  .f-bottom{border-top:1px solid rgba(233,215,168,.15);margin-top:48px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.78rem}
+
+  .wpp{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.4);z-index:60;transition:transform .2s}
+  .wpp:hover{transform:scale(1.08)}
+  .wpp svg{width:30px;height:30px;fill:#fff}
+
+  /* Cart drawer */
+  .overlay{position:fixed;inset:0;background:rgba(31,26,24,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:80}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:var(--ivory);z-index:90;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+  body.cart-open .overlay{opacity:1;pointer-events:auto}
+  body.cart-open .drawer{transform:none}
+  .drawer header{position:static;display:flex;justify-content:space-between;align-items:center;padding:22px 24px;background:transparent}
+  .drawer h3{font-size:1.6rem}
+  .d-items{flex:1;overflow:auto;padding:0 24px}
+  .d-item{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(201,162,75,.2)}
+  .d-item .mini{width:60px;height:60px;background:var(--cream);border-radius:4px;display:grid;place-items:center;flex:none}
+  .d-item .mini svg{width:70%;height:70%}
+  .d-item div{flex:1}
+  .d-item h5{font-family:var(--serif);font-size:1.05rem;font-weight:500}
+  .d-item b{color:var(--gold-dark);font-weight:500}
+  .d-item button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.2rem}
+  .d-empty{text-align:center;color:var(--muted);padding:60px 0}
+  .d-foot{padding:22px 24px;border-top:1px solid rgba(201,162,75,.3)}
+  .d-foot .tot{display:flex;justify-content:space-between;font-family:var(--serif);font-size:1.35rem;margin-bottom:1rem}
+  .d-foot .btn{width:100%;justify-content:center}
+
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,calc(100% + 60px));visibility:hidden;background:var(--ink);color:var(--gold-soft);padding:.9rem 1.4rem;font-size:.85rem;letter-spacing:.06em;z-index:100;transition:transform .35s,visibility .35s;border-left:3px solid var(--gold);width:max-content;max-width:calc(100% - 32px)}
+  .toast.show{transform:translate(-50%,0);visibility:visible}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .menu{display:none}
+    .burger{display:grid}
+    body.menu-open .menu{display:flex;flex-direction:column;position:absolute;top:78px;left:0;right:0;background:var(--ivory);padding:24px 16px;gap:1.2rem;border-bottom:1px solid rgba(201,162,75,.3)}
+    .hero-grid,.about-grid{grid-template-columns:1fr}
+    .hero-art{order:-1}
+    .hero-art img{width:min(320px,80%)}
+    .hero{padding:40px 0 72px}
+    .cats,.grid{grid-template-columns:repeat(2,1fr)}
+    .serv-grid,.t-grid{grid-template-columns:1fr}
+    .serv.featured{margin-top:12px}
+    .insta{grid-template-columns:repeat(3,1fr)}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .portrait{max-width:420px;margin-inline:auto;width:100%}
+    section{padding:72px 0}
+    .card .add{transform:none;left:8px;right:8px;bottom:8px;padding:.6rem .4rem;font-size:.62rem;letter-spacing:.12em}
+  }
+  @media (max-width:560px){
+    .brand span{display:none}
+    .grid{gap:18px 12px}
+    .card h3{font-size:1.1rem}
+    .hero-stats{gap:1.4rem}
+    .checks{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr}
+    .news form{flex-direction:column;border:0;background:transparent;gap:10px}
+    .news input{border:1px solid var(--gold);background:#fff}
+    .news .btn{justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">✦ Frete grátis acima de R$ 199 · Parcele em até 6x sem juros ✦</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="brand"><img src="logo.png" alt="Gabriele Drumond Make-up"><span>Drumond</span></a>
+    <nav class="menu">
+      <a href="#loja">Loja</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Clientes</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="icons">
+      <button class="icon-btn" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      <button class="icon-btn" aria-label="Sacola" id="cartBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" id="badge">0</span></button>
+      <button class="icon-btn burger" aria-label="Menu" id="burger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Maquiagem · Beleza · Autoestima</span>
+      <h1>Realce o que você tem de mais bonito <span class="script">com elegância</span></h1>
+      <p class="lead">Produtos selecionados a dedo e atendimento profissional de maquiagem para noivas, eventos e o seu dia a dia.</p>
+      <div class="hero-ctas">
+        <a href="#loja" class="btn">Ver a loja</a>
+        <a href="#servicos" class="btn ghost">Agendar make</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>+800</strong><span>Clientes atendidas</span></div>
+        <div><strong>+120</strong><span>Noivas</span></div>
+        <div><strong>4.9★</strong><span>Avaliação</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="halo"></div>
+      <img src="logo.png" alt="Logo Gabriele Drumond Make-up">
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div>
+    <span>Batons</span>✦<span>Bases</span>✦<span>Paletas</span>✦<span>Pincéis</span>✦<span>Skincare</span>✦<span>Noivas</span>✦<span>Cursos</span>✦
+    <span>Batons</span>✦<span>Bases</span>✦<span>Paletas</span>✦<span>Pincéis</span>✦<span>Skincare</span>✦<span>Noivas</span>✦<span>Cursos</span>✦
+  </div>
+</div>
+
+<section id="categorias">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Categorias</span>
+      <h2>Encontre o seu <span class="script">favorito</span></h2>
+    </div>
+    <div class="cats">
+      <a class="cat c1 reveal" href="#loja" data-go="labios">
+        <svg viewBox="0 0 100 140"><rect x="30" y="70" width="40" height="66" rx="3" fill="#C9A24B"/><rect x="34" y="40" width="32" height="34" fill="#E9D7A8"/><path d="M38 40V18l24-10v32Z" fill="#A23B45"/></svg>
+        <h3>Lábios</h3>
+      </a>
+      <a class="cat c2 reveal" href="#loja" data-go="olhos">
+        <svg viewBox="0 0 120 100"><rect x="6" y="14" width="108" height="72" rx="6" fill="#2A2421"/><g><circle cx="30" cy="38" r="11" fill="#E8C6A8"/><circle cx="60" cy="38" r="11" fill="#C08A6A"/><circle cx="90" cy="38" r="11" fill="#7A4E3A"/><circle cx="30" cy="64" r="11" fill="#D8B26A"/><circle cx="60" cy="64" r="11" fill="#B06A5C"/><circle cx="90" cy="64" r="11" fill="#4A3330"/></g></svg>
+        <h3>Olhos</h3>
+      </a>
+      <a class="cat c3 reveal" href="#loja" data-go="pele">
+        <svg viewBox="0 0 100 140"><rect x="40" y="10" width="20" height="22" rx="2" fill="#2A2421"/><rect x="24" y="32" width="52" height="100" rx="10" fill="#E3BFA0"/><rect x="24" y="80" width="52" height="30" fill="#fff" opacity=".55"/></svg>
+        <h3>Pele</h3>
+      </a>
+      <a class="cat c4 reveal" href="#loja" data-go="acessorios">
+        <svg viewBox="0 0 140 140"><g transform="rotate(-35 70 70)"><rect x="64" y="58" width="12" height="76" rx="5" fill="#2A2421"/><rect x="62" y="44" width="16" height="18" fill="#C9A24B"/><path d="M60 46c0-22 4-36 10-40 6 4 10 18 10 40Z" fill="#F1E3D0"/></g></svg>
+        <h3>Pincéis</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="products-bg" id="loja">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Mais vendidos</span>
+      <h2>Queridinhos da <span class="script">Gabi</span></h2>
+      <p>Produtos que eu uso nas minhas clientes e recomendo de olhos fechados.</p>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-f="todos">Todos</button>
+      <button class="tab" data-f="labios">Lábios</button>
+      <button class="tab" data-f="olhos">Olhos</button>
+      <button class="tab" data-f="pele">Pele</button>
+      <button class="tab" data-f="acessorios">Pincéis</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Atendimento profissional</span>
+      <h2>Serviços de <span class="script">maquiagem</span></h2>
+      <p>Atendimento em estúdio ou a domicílio. Cada make é pensada para o seu rosto, sua pele e o seu momento.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv reveal">
+        <div class="num">Social</div>
+        <h3>Make para Eventos</h3>
+        <p>Formaturas, aniversários, festas e ensaios. Pele impecável com longa duração.</p>
+        <div class="from">a partir de <b>R$ 180</b></div>
+        <a href="#contato" class="btn ghost">Agendar</a>
+      </div>
+      <div class="serv featured reveal">
+        <div class="num">Noivas</div>
+        <h3>Dia da Noiva</h3>
+        <p>Teste prévio, maquiagem no grande dia e kit de retoque. Tudo para você brilhar.</p>
+        <div class="from">a partir de <b>R$ 650</b></div>
+        <a href="#contato" class="btn">Agendar</a>
+      </div>
+      <div class="serv reveal">
+        <div class="num">Curso</div>
+        <h3>Automaquiagem</h3>
+        <p>Aula individual para aprender a se maquiar com os produtos que você já tem.</p>
+        <div class="from">a partir de <b>R$ 290</b></div>
+        <a href="#contato" class="btn ghost">Agendar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="portrait reveal">
+      <div class="ph"><span class="script">Gabriele</span>Espaço para foto da Gabi</div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Sobre mim</span>
+      <h2>Olá, eu sou a <span class="script">Gabriele</span></h2>
+      <p>Maquiadora profissional apaixonada por realçar a beleza natural de cada mulher. Acredito que maquiagem é mais do que estética: é autoestima, confiança e cuidado consigo mesma.</p>
+      <p>Na minha loja você encontra os mesmos produtos que uso no estúdio, escolhidos pela qualidade, durabilidade e acabamento.</p>
+      <ul class="checks">
+        <li>Produtos originais</li>
+        <li>Atendimento personalizado</li>
+        <li>Envio para todo o Brasil</li>
+        <li>Consultoria de cores</li>
+      </ul>
+      <a href="#contato" class="btn">Fale comigo</a>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="depoimentos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem já se <span class="script">apaixonou</span></h2>
+      <p>(Textos de exemplo — trocar pelos depoimentos reais das clientes.)</p>
+    </div>
+    <div class="t-grid">
+      <div class="t reveal"><div class="q">“</div><p>A maquiagem durou a festa inteira e saí linda em todas as fotos. Me senti a mulher mais bonita do mundo.</p><div class="who"><div class="av">A</div><div>Amanda R.<small>Noiva</small></div></div></div>
+      <div class="t reveal"><div class="q">“</div><p>Comprei a base que ela indicou e foi amor à primeira aplicação. Atendimento super atencioso!</p><div class="who"><div class="av">J</div><div>Juliana M.<small>Cliente da loja</small></div></div></div>
+      <div class="t reveal"><div class="q">“</div><p>Fiz o curso de automaquiagem e hoje me maquio sozinha pra trabalhar. Valeu cada centavo.</p><div class="who"><div class="av">C</div><div>Camila S.<small>Aluna</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">@gabrieledrumond.makeup</span>
+      <h2>Siga no <span class="script">Instagram</span></h2>
+    </div>
+    <div class="insta reveal">
+      <div style="background:linear-gradient(135deg,#EAD0C2,#C99A8A)"></div>
+      <div style="background:linear-gradient(135deg,#F2E4CC,#D4B06A)"></div>
+      <div style="background:linear-gradient(135deg,#3A2E2A,#7A5A4A)"></div>
+      <div style="background:linear-gradient(135deg,#F6E2DC,#D9A9A0)"></div>
+      <div style="background:linear-gradient(135deg,#E8D3C3,#B98E78)"></div>
+      <div style="background:linear-gradient(135deg,#EFDDB2,#C9A24B)"></div>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap reveal">
+    <span class="eyebrow">Clube Drumond</span>
+    <h2>Ganhe <span class="script">10% off</span> na primeira compra</h2>
+    <p style="color:var(--muted);margin-top:.6rem">Receba novidades, dicas de make e promoções exclusivas.</p>
+    <form id="newsForm">
+      <input type="email" placeholder="Seu melhor e-mail" required>
+      <button class="btn" type="submit">Quero!</button>
+    </form>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <img src="logo.png" alt="" class="f-logo">
+        <p>Maquiagem profissional e loja de beleza. Realçando a sua beleza com elegância.</p>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <ul><li><a href="#loja">Lábios</a></li><li><a href="#loja">Olhos</a></li><li><a href="#loja">Pele</a></li><li><a href="#loja">Pincéis</a></li></ul>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <ul><li><a href="#">Trocas e devoluções</a></li><li><a href="#">Formas de pagamento</a></li><li><a href="#">Prazos de entrega</a></li><li><a href="#">Rastrear pedido</a></li></ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul><li>(00) 00000-0000</li><li>contato@exemplo.com</li><li>Seg a Sáb · 9h às 19h</li><li>Sua cidade – UF</li></ul>
+      </div>
+    </div>
+    <div class="f-bottom"><span>© 2026 Gabriele Drumond Make-up. Todos os direitos reservados.</span><span>Prévia de site · versão de apresentação</span></div>
+  </div>
+</footer>
+
+<a class="wpp" href="#contato" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.3Z"/></svg></a>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" aria-label="Sacola">
+  <header><h3>Sua sacola</h3><button class="icon-btn" id="closeCart" aria-label="Fechar">✕</button></header>
+  <div class="d-items" id="dItems"></div>
+  <div class="d-foot">
+    <div class="tot"><span>Total</span><span id="dTotal">R$ 0,00</span></div>
+    <button class="btn" id="checkout">Finalizar compra</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+  // Desenhos simples dos produtos (substituir por fotos reais depois)
+  const art = {
+    batom:c=>`<svg viewBox="0 0 100 140"><rect x="30" y="70" width="40" height="66" rx="3" fill="#C9A24B"/><rect x="34" y="40" width="32" height="34" fill="#E9D7A8"/><path d="M38 40V18l24-10v32Z" fill="${c}"/></svg>`,
+    gloss:c=>`<svg viewBox="0 0 100 140"><rect x="40" y="6" width="20" height="44" rx="4" fill="#2A2421"/><rect x="36" y="48" width="28" height="86" rx="12" fill="${c}" opacity=".85"/><rect x="42" y="56" width="5" height="64" rx="2" fill="#fff" opacity=".5"/></svg>`,
+    paleta:c=>`<svg viewBox="0 0 120 100"><rect x="6" y="14" width="108" height="72" rx="6" fill="#2A2421"/>${c.map((x,i)=>`<circle cx="${30+(i%3)*30}" cy="${38+Math.floor(i/3)*26}" r="11" fill="${x}"/>`).join('')}</svg>`,
+    mascara:c=>`<svg viewBox="0 0 100 140"><rect x="42" y="8" width="16" height="60" rx="3" fill="${c}"/><rect x="40" y="66" width="20" height="70" rx="4" fill="#C9A24B"/></svg>`,
+    base:c=>`<svg viewBox="0 0 100 140"><rect x="40" y="10" width="20" height="22" rx="2" fill="#2A2421"/><rect x="24" y="32" width="52" height="100" rx="10" fill="${c}"/><rect x="24" y="80" width="52" height="30" fill="#fff" opacity=".55"/></svg>`,
+    po:c=>`<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="#C9A24B"/><circle cx="60" cy="60" r="42" fill="${c}"/><circle cx="48" cy="46" r="12" fill="#fff" opacity=".35"/></svg>`,
+    pincel:c=>`<svg viewBox="0 0 140 140"><g transform="rotate(-35 70 70)"><rect x="64" y="58" width="12" height="76" rx="5" fill="#2A2421"/><rect x="62" y="44" width="16" height="18" fill="#C9A24B"/><path d="M60 46c0-22 4-36 10-40 6 4 10 18 10 40Z" fill="${c}"/></g></svg>`,
+    esponja:c=>`<svg viewBox="0 0 100 120"><path d="M50 8c22 0 34 40 34 66a34 34 0 0 1-68 0C16 48 28 8 50 8Z" fill="${c}"/></svg>`
+  };
+
+  const products = [
+    {id:1,n:"Batom Matte Velvet",b:"Linha Drumond",cat:"labios",t:"batom",c:"#A23B45",p:59.9,old:79.9,tag:"Mais vendido",bg:"#F5E1DD",sw:["#A23B45","#C76B6B","#8A2E3A","#D49A8A"]},
+    {id:2,n:"Gloss Glow Nude",b:"Linha Drumond",cat:"labios",t:"gloss",c:"#D9A9A0",p:42.9,bg:"#F7ECE6",sw:["#D9A9A0","#E7BFB2","#C48678"]},
+    {id:3,n:"Paleta Golden Hour",b:"Coleção Ouro",cat:"olhos",t:"paleta",c:["#F1DDB8","#D8B26A","#B98547","#C08A6A","#7A4E3A","#3D2A24"],p:149.9,old:189.9,tag:"Lançamento",bg:"#F3E7D2"},
+    {id:4,n:"Máscara Volume Extremo",b:"Linha Drumond",cat:"olhos",t:"mascara",c:"#2A2421",p:69.9,bg:"#EFE6DD"},
+    {id:5,n:"Base Segunda Pele",b:"Skin Perfect",cat:"pele",t:"base",c:"#E3BFA0",p:119.9,tag:"Favorito",bg:"#F1E4D8",sw:["#F1D4BC","#E3BFA0","#C99A78","#9A6A4C","#6A4532"]},
+    {id:6,n:"Pó Translúcido Silk",b:"Skin Perfect",cat:"pele",t:"po",c:"#F2E1CF",p:89.9,bg:"#F4EBE0"},
+    {id:7,n:"Kit Pincéis Gold (12 un.)",b:"Acessórios Drumond",cat:"acessorios",t:"pincel",c:"#F1E3D0",p:199.9,old:249.9,tag:"-20%",bg:"#EFE5DA"},
+    {id:8,n:"Esponja Blend Perfeito",b:"Acessórios Drumond",cat:"acessorios",t:"esponja",c:"#E7A9A6",p:34.9,bg:"#F7E8E5"},
+  ];
+
+  const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const grid = document.getElementById('grid');
+  grid.innerHTML = products.map(p=>`
+    <article class="card reveal" data-cat="${p.cat}">
+      <div class="media" style="background:${p.bg}">
+        ${p.tag?`<span class="tag">${p.tag}</span>`:''}
+        <button class="fav" aria-label="Favoritar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+        ${art[p.t](p.c)}
+        <button class="btn add" data-id="${p.id}">Adicionar à sacola</button>
+      </div>
+      <div class="info">
+        <div class="brand-n">${p.b}</div>
+        <h3>${p.n}</h3>
+        ${p.sw?`<div class="swatches">${p.sw.map(s=>`<i style="background:${s}"></i>`).join('')}</div>`:''}
+        <div class="stars">★★★★★</div>
+        <div class="price"><b>${brl(p.p)}</b>${p.old?`<s>${brl(p.old)}</s>`:''}</div>
+      </div>
+    </article>`).join('');
+
+  // Filtro
+  function filter(f){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.f===f));
+    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',f!=='todos'&&c.dataset.cat!==f));
+  }
+  document.getElementById('tabs').addEventListener('click',e=>{ if(e.target.dataset.f) filter(e.target.dataset.f) });
+  document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>filter(a.dataset.go)));
+
+  // Sacola (demonstração)
+  const cart = [];
+  const badge = document.getElementById('badge');
+  const toast = document.getElementById('toast');
+  let tt;
+  function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>toast.classList.remove('show'),2200) }
+  function render(){
+    badge.textContent = cart.length;
+    badge.classList.add('bump'); setTimeout(()=>badge.classList.remove('bump'),200);
+    const box = document.getElementById('dItems');
+    box.innerHTML = cart.length ? cart.map((p,i)=>`
+      <div class="d-item"><div class="mini" style="background:${p.bg}">${art[p.t](p.c)}</div>
+      <div><h5>${p.n}</h5><b>${brl(p.p)}</b></div><button data-rm="${i}" aria-label="Remover">✕</button></div>`).join('')
+      : '<div class="d-empty">Sua sacola está vazia.</div>';
+    document.getElementById('dTotal').textContent = brl(cart.reduce((s,p)=>s+p.p,0));
+  }
+  grid.addEventListener('click',e=>{
+    const add = e.target.closest('.add');
+    if(add){ const p=products.find(x=>x.id==add.dataset.id); cart.push(p); render(); showToast(`✦ ${p.n} adicionado à sacola`) }
+    const fav = e.target.closest('.fav');
+    if(fav){ fav.classList.toggle('on'); if(fav.classList.contains('on')) showToast('♡ Adicionado aos favoritos') }
+  });
+  document.getElementById('dItems').addEventListener('click',e=>{ if(e.target.dataset.rm!==undefined){ cart.splice(e.target.dataset.rm,1); render() } });
+  const openCart = ()=>document.body.classList.add('cart-open');
+  const closeCart = ()=>document.body.classList.remove('cart-open');
+  document.getElementById('cartBtn').onclick = openCart;
+  document.getElementById('closeCart').onclick = closeCart;
+  document.getElementById('overlay').onclick = closeCart;
+  document.getElementById('checkout').onclick = ()=>showToast('Prévia: o checkout será integrado na versão final');
+  document.getElementById('burger').onclick = ()=>document.body.classList.toggle('menu-open');
+  document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>document.body.classList.remove('menu-open'));
+  document.getElementById('newsForm').onsubmit = e=>{ e.preventDefault(); e.target.reset(); showToast('✦ Obrigada! Seu cupom chegará no e-mail') };
+  render();
+
+  // Animação de entrada
+  const io = new IntersectionObserver(es=>es.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target) } }),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
